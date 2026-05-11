@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="kiosk-center">
+  <div class="card kiosk-card">
+    <div class="card-body">
+      <h2 class="h5 text-center mb-3">
+        {% trans "Instruction for" %} <span class="text-muted">{{ room }}</span>
+      </h2>
+
+      <div class="mb-3">
+        <div class="d-flex justify-content-between small text-muted mb-1">
+          <span>{% trans "Step" %} {{ step }}/{{ total_steps }}</span>
+          <span class="text-muted">{{ role|title }}</span>
+        </div>
+        <div class="progress" style="height:10px;">
+          <div class="progress-bar dynamic" style="--progress: {{ step }}; --total: {{ total_steps }};"></div>
+        </div>
+      </div>
+
+      <div class="instruction-step mb-4 text-center">
+        <p class="fs-5">{{ step_text|safe }}</p>
+        {% if step_image %}
+          <img src="{{ step_image }}" alt="Step {{ step }}" class="img-fluid rounded shadow mt-3">
+        {% endif %}
+      </div>
+
+      <div class="d-flex justify-content-center gap-2">
+  {% if prev_url %}
+    <a href="{{ prev_url }}" class="btn btn-outline-secondary btn-lg px-4">{% trans "Back" %}</a>
+  {% endif %}
+  {% if is_last %}
+    <button id="finishBtn" type="button" class="btn btn-success btn-lg px-4">
+      {% trans "Finish" %}
+    </button>
+  {% else %}
+    <a href="{{ next_url }}" class="btn btn-primary btn-lg px-4">{% trans "Next" %}</a>
+  {% endif %}
+</div>
+
+    </div>
+  </div>
+</div>
+<style>.progress-bar.dynamic{width:calc((var(--progress)/var(--total))*100%);}</style>
+
+<script>
+    // Strzałki: ← / →
+  document.addEventListener('keydown', (e) => {
+    if (['INPUT','TEXTAREA','SELECT'].includes((e.target.tagName||'').toUpperCase())) return;
+    if (e.key === 'ArrowLeft' && {{ prev_url|yesno:"true,false" }}) { window.location = "{{ prev_url }}"; }
+    if (e.key === 'ArrowRight') { window.location = "{{ next_url }}"; }
+  });
+
+  (function () {
+    function bestEffortClose() {
+      // 1) standard close
+      try { window.close(); } catch (e) {}
+
+      // 2) self-target trick (często pomaga)
+      try { window.open('', '_self'); window.close(); } catch (e) {}
+
+      // 3) top-level (gdy w iframe itp.)
+      try { window.top.close(); } catch (e) {}
+
+      // 4) zamień zawartość na pustą i spróbuj zamknąć
+      setTimeout(() => {
+        try {
+          const w = window.open('about:blank', '_self');
+          if (w) w.close();
+        } catch (e) {}
+      }, 50);
+
+      // 5) Fallback UI: jeśli nie zamknięto, pokaż krótką instrukcję
+      setTimeout(() => {
+        if (!document.hidden && !window.closed) {
+          document.body.innerHTML = `
+            <div style="display:grid;place-items:center;height:100vh;padding:2rem;text-align:center;font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial">
+              <h1 style="margin-bottom:.5rem;">✅ {% trans "All done" %}</h1>
+              <p class="text-muted" style="margin-bottom:1rem;">
+                {% trans "Your browser blocked automatic closing." %}
+              </p>
+              <p style="margin-bottom:1rem;">
+                {% trans "Use" %} <b>Alt+F4</b> (Windows) {% trans "or" %} <b>⌘W</b> (macOS).
+              </p>
+              <a href="{% url 'kiosk:start' %}" class="btn btn-primary">{% trans "Restart" %}</a>
+            </div>`;
+        }
+      }, 300);
+    }
+
+    document.getElementById('finishBtn')?.addEventListener('click', bestEffortClose);
+  })();
+</script>
+
+{% endblock %}

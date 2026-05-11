@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="kiosk-center">
+  <div class="card kiosk-card">
+    <div class="card-body text-center">
+      <h1 class="h4 mb-3">{% trans "Choose a room" %}</h1>
+      <div class="d-grid gap-3">
+        <a class="btn btn-primary btn-rect btn-block"
+           href="{% url 'kiosk:choose_language' room_slug='kreatywna' %}">
+          {% trans "Creative Room" %}
+        </a>
+        <a class="btn btn-primary btn-rect btn-block"
+           href="{% url 'kiosk:choose_language' room_slug='vip' %}">
+          {% trans "VIP Room" %}
+        </a>
+      </div>
+      <p class="text-muted mt-3 small">
+        {% trans "QR for this room should point here:" %}<br>
+        <code>/kiosk/room/&lt;room_slug&gt;/language/</code>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

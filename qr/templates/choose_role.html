@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="kiosk-center">
+  <div class="card kiosk-card">
+    <div class="card-body text-center">
+      <h1 class="h4 mb-3">{% trans "Who are you?" %}</h1>
+      <form method="post">
+        {% csrf_token %}
+        <div class="d-grid gap-3">
+          <button name="role" value="employee" class="btn btn-primary btn-rect btn-block">
+            {% trans "Employee" %}
+          </button>
+          <button name="role" value="external" class="btn btn-primary btn-rect btn-block">
+            {% trans "External visitor" %}
+          </button>
+        </div>
+      </form>
+      <div class="mt-3">
+        <a href="{% url 'kiosk:choose_language' room_slug=room_slug %}" class="btn btn-link">← {% trans "Change language" %}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+>

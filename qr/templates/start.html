@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="kiosk-center">
+  <div class="card kiosk-card">
+    <div class="card-body text-center">
+      <h1 class="h4 mb-3">{% trans "Conference Rooms – Instructions" %}</h1>
+      <p class="text-muted mb-4">{% trans "Scan the QR code in the room to start, or pick a room manually:" %}</p>
+      <a href="{% url 'kiosk:choose_room' %}" class="btn btn-primary btn-rect btn-block">
+        {% trans "Choose room manually" %}
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

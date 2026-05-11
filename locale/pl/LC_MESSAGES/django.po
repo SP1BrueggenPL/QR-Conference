@@ -1,0 +1,113 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Conference Instruction\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-21 18:00+0000\n"
+"PO-Revision-Date: 2025-08-21 18:00+0000\n"
+"Last-Translator: <Twoje imię>\n"
+"Language-Team: Polish\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# -------------------
+# Strona główna / UI
+# -------------------
+
+msgid "Choose a language"
+msgstr "Wybierz język"
+
+msgid "Choose a room"
+msgstr "Wybierz salę"
+
+msgid "Creative Room"
+msgstr "Sala Kreatywna"
+
+msgid "VIP Room"
+msgstr "Sala VIP"
+
+msgid "Next"
+msgstr "Dalej"
+
+msgid "Back"
+msgstr "Wstecz"
+
+msgid "Finish"
+msgstr "Zakończ"
+
+msgid "Instruction for"
+msgstr "Instrukcja dla"
+
+msgid "Click the button for the selected room to see the instructions."
+msgstr "Kliknij przycisk wybranego pokoju, aby wyświetlić instrukcje."
+
+msgid "← Zmień język"
+msgstr "← Change language"
+
+msgid "Step"
+msgstr "Krok"
+
+# -------------------
+# Instrukcja: Sala Kreatywna
+# -------------------
+
+msgid "<strong>Creative Room - Preparation</strong>"
+msgstr "<strong>SALA KREATYWNA - Przygotowanie</strong>"
+
+msgid "Check room availability on the screen before entering – it shows the current reservation status. You can reserve the room using this device."
+msgstr "Sprawdź dostępność Sali na ekranie przed wejściem – pokazuje aktualny stan rezerwacji. Możesz zarezerwować salę używając tego urządzenia."
+
+msgid "After entering the room, it may be necessary to turn on the screen power – you can do this with the buttons on the wall between the screens."
+msgstr "Po wejściu do Sali, może być konieczność włączania zasilania ekranów – można to zrobić przyciskami na ścianie pomiędzy ekranami."
+
+msgid "<strong>Creative Room - Start a Conference</strong>"
+msgstr "<strong>SALA KREATYWNA - Uruchomienie konferencji</strong>"
+
+msgid "We can start the meeting using the Panel on the table – just press the join button. <strong>*A meeting must be created on Teams.</strong> Image and sound are transmitted via conference equipment installed in the room."
+msgstr "Spotkanie możemy uruchomić przy pomocy Panelu na stole – wystarczy wcisnąć przycisk dołącz. <strong>*Musi być stworzone spotkanie na Teams.</strong> Obraz oraz dźwięk przekazywany jest przez sprzęt konferencyjny zainstalowany na Sali."
+
+msgid "If you want to share your screen, use the device below."
+msgstr "Jeżeli chcesz udostępnić ekran użyj poniższego urządzenia."
+
+msgid "After connecting the device, it will appear like a USB drive in File Explorer."
+msgstr "Po podłączeniu urządzenia, pojawi się ono podobnie jak dysk USB w eksploratorze plików."
+
+msgid "After starting the application on the USB adapter, a window will appear showing the system is ready for screen sharing. Then press the button on the adapter – it will light up green. Sound should also be transmitted through the conference system."
+msgstr "Po uruchomieniu aplikacji na adapterze USB pojawi się okno z informacją o gotowości systemu do współdzielenia ekranu. Wtedy wciskamy przycisk na adapterze, który zacznie się podświetlać na zielono. Dźwięk z urządzenia powinien być aktywny poprzez system konferencyjny Sali konferencyjnej."
+
+msgid "You can also use the HDMI cables present in the room (labeled). <strong>Please do not switch them.</strong>"
+msgstr "Możemy się też podłączyć za pośrednictwem obecnych na Sali przewodów HDMI (opisanych etykietkami). <strong>Prośba o ich nie przełączanie.</strong>"
+
+msgid "<strong>HDMI PROJECTOR</strong> -> turn on the projector with the remote and make sure HDMI2 is selected as the source."
+msgstr "<strong>HDMI PROJECTOR</strong> -> uruchamiamy projektor pilotem oraz upewniamy się, że mamy wybrane źródło HDMI2."
+
+msgid "<strong>HDMI TV</strong> -> This cable is for the right-side screen, ensure the TV source is set to PC (DVI)."
+msgstr "<strong>HDMI TV</strong> -> Ten przewód służy do ekranu po prawej stronie, na pilocie TV wybrane musi zostać źródło PC (DVI)."
+
+msgid "You can also use the computer in the room. Ensure the right screen has the Videoconference source selected. Use the keyboard and mouse in the room to log into Windows and then BWP. <strong>When using a computer, remember to log out at the end of the meeting.</strong>"
+msgstr "Możemy również użyć komputera na Sali. W tym celu upewniamy się, że prawy ekran ma wybrane źródło: Videoconference. Komputer obsługujemy klawiaturą i myszką dostępną na Sali. Logujemy się do komputera tak jak do swojego konta w Windows, a następnie do BWP. <strong>Używając komputera - pamiętaj, aby się wylogować na koniec spotkania.</strong>"
+
+msgid "<strong>Scan the QR code for IT Support if you need help.</strong>"
+msgstr "<strong>Zeskanuj kod QR, jeśli potrzebujesz pomocy ze strony IT.</strong>"
+
+msgid "<strong>VIP Room - Preparation</strong>"
+msgstr "<strong>SALA VIP - Przygotowanie</strong>"
+
+msgid "After entering the room, it may be necessary to turn on the projector power – you can do this with the wall buttons."
+msgstr "Po wejściu do Sali, może być konieczność włączania zasilania projektora – można to zrobić przyciskami na ścianie."
+
+msgid "<strong>VIP Room - Start a Conference</strong>"
+msgstr "<strong>SALA VIP - Uruchomienie konferencji</strong>"
+
+msgid "Use the computer located under the table near the screen. Ensure the right screen has HDMI2 selected as the source. Operate the computer using the keyboard and mouse available in the room. Log into Windows and then BWP. <strong>When using a computer, remember to log out at the end of the meeting.</strong>"
+msgstr "Możemy również użyć komputera znajdującego się pod stołem w okolicach ekranu. W tym celu upewniamy się, że prawy ekran ma wybrane źródło: HDMI2. Komputer obsługujemy klawiaturą i myszką dostępną na Sali. Logujemy się do systemu Windows, a następnie do BWP. <strong>Używając komputera - pamiętaj, aby się wylogować na koniec spotkania.</strong>"
+
+msgid "Employee"
+msgstr "Pracownik"
+
+msgid "External visitor"
+msgstr "Odwiedzający"
+
+msgid "Who are you?"
+msgstr "Kim jesteś?"

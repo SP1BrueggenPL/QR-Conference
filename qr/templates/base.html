@@ -1,0 +1,218 @@
+{% load static i18n %}
+{% get_current_language as LANGUAGE %}
+<html lang="{{ LANGUAGE|default:'en' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conferences room - Instruction</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Twój styl -->
+  <link href="{% static 'css/kiosk.css' %}" rel="stylesheet">
+
+  <style>
+    body { opacity: 0; transition: opacity 0.6s ease-in-out; background: url("{% static 'backgrounds/Background.png' %}") no-repeat center center fixed;
+    background-size: cover; }
+    body.fade-in { opacity: 1; }
+    .kiosk-center {
+      min-height: 100dvh; display: grid; place-items: center; padding: 2rem;
+    }
+    .kiosk-card {
+      max-width: 720px; width: 100%;
+    }
+
+    :root{
+    --c-primary:#FF4143;   /* czerwony */
+    --c-ink:#661C31;       /* ciemny bordo */
+    --c-gold:#E2BC54;      /* złoto */
+    --c-rose:#CC6884;      /* róż */
+    --c-graphite:#514B51;  /* grafit */
+    --c-muted:#7885A2;     /* stalowo-niebieski */
+  }
+
+  /* Karta kiosku */
+  .kiosk-card{ max-width: 760px; width:100%; border: 0; }
+  .kiosk-card.card{ box-shadow: 0 20px 50px rgba(0,0,0,.08)!important; }
+  .kiosk-card .card-body{
+    border-top: 6px solid var(--c-gold);
+    border-radius: 12px;
+  }
+
+  /* Przyciski – nadpisanie Bootstrapa pod Twoją paletę */
+  .btn-primary{
+    --bs-btn-bg: var(--c-primary);
+    --bs-btn-border-color: var(--c-primary);
+    --bs-btn-hover-bg: #e63a3b;
+    --bs-btn-hover-border-color: #e63a3b;
+    --bs-btn-focus-shadow-rgb: 255,65,67;
+  }
+  .btn-outline-primary{
+    --bs-btn-color: var(--c-primary);
+    --bs-btn-border-color: var(--c-primary);
+    --bs-btn-hover-bg: var(--c-primary);
+    --bs-btn-hover-border-color: var(--c-primary);
+    --bs-btn-hover-color: #fff;
+  }
+  .btn-success{
+    --bs-btn-bg: var(--c-gold);
+    --bs-btn-border-color: var(--c-gold);
+    --bs-btn-hover-bg: #d0a748;
+    --bs-btn-hover-border-color: #d0a748;
+    --bs-btn-color: var(--c-ink);
+  }
+  .btn-outline-secondary{
+    --bs-btn-color: var(--c-graphite);
+    --bs-btn-border-color: var(--c-graphite);
+    --bs-btn-hover-bg: var(--c-graphite);
+    --bs-btn-hover-border-color: var(--c-graphite);
+    --bs-btn-hover-color:#fff;
+  }
+  .btn-link{
+    color: var(--c-primary);
+    text-decoration: none;
+  }
+  .btn-link:hover{ color:#e63a3b; text-decoration: underline; }
+
+  /* Pasek postępu */
+  .progress{ background: #eee; border-radius: 999px; overflow: hidden; }
+  .progress-bar.dynamic{
+    background: linear-gradient(90deg, var(--c-primary), #CC3B66 70%);
+    width: calc((var(--progress) / var(--total)) * 100%);
+  }
+
+  /* Nagłówki */
+  h1,h2,h3,h4{ color: var(--c-ink); }
+
+  /* Obrazek kroku */
+  .instruction-step img{ border: 3px solid #fff; outline: 2px solid rgba(0,0,0,.05); }
+
+    /* Karta kiosku */
+.kiosk-card {
+  max-width: 760px;
+  width: 100%;
+  border: none;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.kiosk-card .card-body {
+  padding: 2rem;
+  border: none; /* usuwa złotą obwódkę */
+}
+
+    /* Przyciski wyboru języka */
+.lang-btn {
+  min-width: 150px;
+  height: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Kolory */
+.btn-primary {
+  background-color: #FF4143;
+  border-color: #FF4143;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #661C31;
+  border-color: #661C31;
+}
+
+.btn-outline-primary {
+  border: 2px solid #FF4143;
+  color: #FF4143;
+  background: transparent;
+}
+
+.btn-outline-primary:hover {
+  background: #FF4143;
+  color: #fff;
+}
+
+ /* full-width buttons for kiosk/mobile */
+.btn-block { width: 100%; }
+.btn-rect { border-radius: 8px; height: 50px; font-weight: 600; letter-spacing: .3px; }
+
+.kiosk-footer {
+  background: rgba(0,0,0,0.05);
+  font-size: 0.9rem;
+  color: var(--c-graphite);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+
+  </style>
+</head>
+<body>
+
+  {% block content %}{% endblock %}
+
+  <!-- Bootstrap JS (opcjonalnie) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+          crossorigin="anonymous"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Fade-in efekt
+      document.body.classList.add('fade-in');
+
+      // Pełny ekran w trybie kiosk
+      if (window.location.pathname.startsWith('/kiosk')) {
+        document.documentElement.requestFullscreen?.();
+      }
+
+      // Fade-out tylko dla linków i formularzy GET
+      const linksAndButtons = document.querySelectorAll('a, button[type="submit"]');
+
+      linksAndButtons.forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          const form = el.closest('form');
+          const isPost = form?.method?.toLowerCase() === 'post';
+
+          // Nie stosuj fade-out dla formularzy POST
+          if (!form || !isPost) {
+            // jeśli to <button type="submit"> bez form action → pozwól przeglądarce wysłać GET normalnie
+            const isSubmit = el.tagName === 'BUTTON' && el.type === 'submit' && form && form.method?.toLowerCase() !== 'post';
+            if (isSubmit) return;
+
+            e.preventDefault();
+            const href = el.closest('a')?.href || form?.action || '#';
+            document.body.classList.remove('fade-in');
+            document.body.style.opacity = 0;
+            setTimeout(() => { window.location.href = href; }, 300);
+          }
+        });
+      });
+    });
+
+    window.addEventListener('load', function() {
+      document.querySelectorAll('form').forEach(form => {
+        form.setAttribute('autocomplete', 'off');
+      });
+      document.querySelectorAll('input').forEach(input => {
+        input.setAttribute('autocomplete', 'off');
+      });
+    });
+  </script>
+
+</body>
+
+
+</html>
+
+
+

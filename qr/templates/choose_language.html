@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="kiosk-center">
+  <div class="card shadow kiosk-card">
+    <div class="card-body p-4 text-center">
+      <h1 class="h4 mb-3 text-ink">
+        {{ t.ui.select_language|default:"Wybierz język/Choose language" }}
+      </h1>
+
+<form method="post">
+  {% csrf_token %}
+  <div class="d-grid gap-3">
+    <button type="submit" name="language" value="pl"
+            class="btn btn-primary btn-rect btn-block">
+      🇵🇱 {{ t.languages.polish|default:"Polski" }}
+    </button>
+    <button type="submit" name="language" value="en"
+            class="btn btn-primary btn-rect btn-block">
+      🇬🇧 {{ t.languages.english|default:"English" }}
+    </button>
+  </div>
+</form>
+
+
+
+    </div>
+  </div>
+</div>
+{% endblock %}
