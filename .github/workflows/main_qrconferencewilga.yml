@@ -64,3 +64,4 @@ jobs:
           app-name: 'QRConferenceWilga'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_325357B0734E4BCEA804B1A36660BC2E }}
+          app-settings-json: '[{"name": "DJANGO_SECRET_KEY", "value": "${{ secrets.DJANGO_SECRET_KEY }}", "slotSetting": false}]'
