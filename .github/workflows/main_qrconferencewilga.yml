@@ -58,7 +58,6 @@ jobs:
           name: python-app
 
       - name: Set DJANGO_SECRET_KEY via Kudu API
-        if: ${{ secrets.DJANGO_SECRET_KEY != '' }}
         env:
           PUBLISH_PROFILE: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_325357B0734E4BCEA804B1A36660BC2E }}
           DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
