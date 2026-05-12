@@ -57,12 +57,46 @@ jobs:
         with:
           name: python-app
 
-      - name: Configure Azure App Service settings
-        uses: azure/appservice-settings@v1
-        with:
-          app-name: 'QRConferenceWilga'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_325357B0734E4BCEA804B1A36660BC2E }}
-          app-settings-json: '[{"name": "DJANGO_SECRET_KEY", "value": "${{ secrets.DJANGO_SECRET_KEY }}", "slotSetting": false}]'
+      - name: Set DJANGO_SECRET_KEY via Kudu API
+        if: ${{ secrets.DJANGO_SECRET_KEY != '' }}
+        env:
+          PUBLISH_PROFILE: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_325357B0734E4BCEA804B1A36660BC2E }}
+          DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+        run: |
+          python3 - <<'EOF'
+          import os, re, json, base64, urllib.request, sys
+
+          profile = os.environ['PUBLISH_PROFILE']
+          secret_key = os.environ['DJANGO_SECRET_KEY']
+
+          if not secret_key:
+              print("DJANGO_SECRET_KEY secret is empty – skipping. Set it in repo Settings → Secrets.")
+              sys.exit(0)
+
+          url_match = re.search(r'publishMethod="MSDeploy"[^>]*publishUrl="([^"]+)"', profile)
+          user_match = re.search(r'userName="\$([^"]+)"', profile)
+          pwd_match = re.search(r'userPWD="([^"]+)"', profile)
+
+          if not all([url_match, user_match, pwd_match]):
+              print("Could not parse publish profile", file=sys.stderr)
+              sys.exit(1)
+
+          scm_host = url_match.group(1).split(':')[0]
+          username = f"${user_match.group(1)}"
+          password = pwd_match.group(1)
+
+          credentials = base64.b64encode(f"{username}:{password}".encode()).decode()
+          payload = json.dumps({"DJANGO_SECRET_KEY": secret_key}).encode()
+
+          req = urllib.request.Request(
+              f"https://{scm_host}/api/settings",
+              data=payload,
+              method="POST",
+              headers={"Authorization": f"Basic {credentials}", "Content-Type": "application/json"},
+          )
+          with urllib.request.urlopen(req) as resp:
+              print(f"DJANGO_SECRET_KEY set on Azure App Service (HTTP {resp.status})")
+          EOF
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
