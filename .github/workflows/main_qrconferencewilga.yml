@@ -50,13 +50,20 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: python-app
-      
+
+      - name: Configure Azure App Service settings
+        uses: azure/appservice-settings@v1
+        with:
+          app-name: 'QRConferenceWilga'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_325357B0734E4BCEA804B1A36660BC2E }}
+          app-settings-json: '[{"name": "DJANGO_SECRET_KEY", "value": "${{ secrets.DJANGO_SECRET_KEY }}", "slotSetting": false}]'
+
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
@@ -64,4 +71,3 @@ jobs:
           app-name: 'QRConferenceWilga'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_325357B0734E4BCEA804B1A36660BC2E }}
-          app-settings-json: '[{"name": "DJANGO_SECRET_KEY", "value": "${{ secrets.DJANGO_SECRET_KEY }}", "slotSetting": false}]'
